@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perumusan Tujuan Pembelajaran</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            border: 1px solid #e5e7eb;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: #0ea5e9;
+            animation: spin 1s ease infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .btn-primary {
+            @apply w-full max-w-xs mx-auto bg-sky-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 transition-transform transform active:scale-95 flex items-center justify-center;
+        }
+        .btn-action {
+             @apply w-auto bg-sky-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 transition-transform transform active:scale-95 flex items-center justify-center;
+        }
+        select:disabled {
+            background-color: #f3f4f6;
+            cursor: not-allowed;
+        }
+        option[hidden] {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl space-y-8">
+        
+        <header class="text-center">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Perumusan Tujuan Pembelajaran</h1>
+        </header>
+
+        <!-- Alur 1: Input CP -->
+        <div id="step1-card" class="card text-center">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">Pengaturan & Input CP</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 text-left">
+                <div>
+                    <label for="fase-select" class="block text-sm font-medium text-gray-700 mb-1">Fase</label>
+                    <select id="fase-select" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500">
+                        <option value="" disabled selected>-- Pilih Fase --</option>
+                        <option value="A">Fase A (Kelas 1-2)</option>
+                        <option value="B">Fase B (Kelas 3-4)</option>
+                        <option value="C">Fase C (Kelas 5-6)</option>
+                        <option value="D">Fase D (Kelas 7-9)</option>
+                        <option value="E">Fase E (Kelas 10)</option>
+                        <option value="F">Fase F (Kelas 11-12)</option>
+                    </select>
+                </div>
+                 <div>
+                    <label for="matapelajaran-select" class="block text-sm font-medium text-gray-700 mb-1">Mata Pelajaran</label>
+                    <select id="matapelajaran-select" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500">
+                        <option value="" disabled selected>-- Pilih Mapel --</option>
+                        <option value="Pendidikan Agama Islam">Pendidikan Agama Islam</option>
+                        <option value="Pendidikan Pancasila">Pendidikan Pancasila</option>
+                        <option value="Bahasa Indonesia">Bahasa Indonesia</option>
+                        <option value="Bahasa Sunda">Bahasa Sunda</option>
+                        <option value="Matematika">Matematika</option>
+                        <option value="Bahasa Inggris">Bahasa Inggris</option>
+                        <option value="IPAS">Ilmu Pengetahuan Alam dan Sosial (IPAS)</option>
+                        <option value="IPA">Ilmu Pengetahuan Alam (IPA)</option>
+                        <option value="IPS">Ilmu Pengetahuan Sosial (IPS)</option>
+                        <option value="PJOK">PJOK</option>
+                        <option value="Informatika">Informatika</option>
+                        <option value="Seni Musik">Seni Musik</option>
+                        <option value="Seni Rupa">Seni Rupa</option>
+                        <option value="Seni Tari">Seni Tari</option>
+                        <option value="Seni Teater">Seni Teater</option>
+                        <option value="Lainnya">Lainnya</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="elemen-select" class="block text-sm font-medium text-gray-700 mb-1">Elemen</label>
+                    <select id="elemen-select" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500" disabled>
+                        <option value="" disabled selected>-- Pilih Mapel dulu --</option>
+                    </select>
+                </div>
+            </div>
+
+            <p class="text-sm text-gray-500 mb-4 max-w-2xl mx-auto">Lengkapi pilihan di atas, kemudian tempelkan deskripsi Capaian Pembelajaran pada kolom di bawah.</p>
+            <textarea id="cp-input" class="w-full h-40 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 text-left" placeholder="Contoh: Memahami hubungan antara sifat partikel zat dengan struktur partikelnya; menjelaskan penerapan konsep partikel zat dalam kehidupan sehari-hari..."></textarea>
+            <button id="generate-btn" class="mt-6 btn-primary">
+                Buat Tujuan Pembelajaran
+            </button>
+        </div>
+
+        <!-- Alur Hasil: Tujuan Pembelajaran -->
+        <div id="result-card" class="card hidden">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800 text-center">Tujuan Pembelajaran Berdasarkan Taksonomi SOLO</h2>
+            <div id="tp-results-container" class="space-y-6">
+                 <div class="text-center text-gray-500 py-10">Rekomendasi TP akan ditampilkan di sini.</div>
+            </div>
+             <div id="tp-loader" class="flex flex-col items-center justify-center h-48">
+                <div class="spinner"></div>
+                <p id="tp-loader-text" class="mt-4 text-gray-600">Membuat rekomendasi TP... Mohon tunggu.</p>
+            </div>
+            <div id="result-actions" class="mt-6 flex flex-wrap gap-4 justify-center hidden">
+                <button id="regenerate-tp-btn" class="btn-action">
+                    Buat Ulang TP
+                </button>
+                <button id="export-btn" class="btn-action bg-emerald-600 hover:bg-emerald-700 focus:ring-emerald-500">
+                    Ekspor ke CSV
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- Konfigurasi ---
+        // Ganti dengan URL Aplikasi Web dari Google Apps Script yang sudah Anda deploy
+        const GAS_WEB_APP_URL = 'AIzaSyDP-IPndJVfFi2f5ITAfAlZKR9qkHKcoaQ';
+
+        // --- Elemen DOM ---
+        const matapelajaranSelect = document.getElementById('matapelajaran-select');
+        const faseSelect = document.getElementById('fase-select');
+        const elemenSelect = document.getElementById('elemen-select');
+        const cpInput = document.getElementById('cp-input');
+        const generateBtn = document.getElementById('generate-btn');
+        const regenerateTpBtn = document.getElementById('regenerate-tp-btn');
+        const exportBtn = document.getElementById('export-btn');
+
+        const resultCard = document.getElementById('result-card');
+        const tpResultsContainer = document.getElementById('tp-results-container');
+        const tpLoader = document.getElementById('tp-loader');
+        const tpLoaderText = document.getElementById('tp-loader-text');
+        const resultActions = document.getElementById('result-actions');
+
+        // --- State Aplikasi ---
+        let currentCpText = '';
+        let currentTopics = []; 
+        let generatedTpData = []; 
+
+        // --- Logika Pilihan Fase/Kelas & Elemen ---
+        const elemenMap = {
+            'Pendidikan Agama Islam': ['CP Umum', 'Al-Qur\'an dan Hadis', 'Akidah', 'Akhlak', 'Fikih', 'Sejarah Peradaban Islam'],
+            'Pendidikan Pancasila': ['CP Umum', 'Pancasila', 'Undang-Undang Dasar Negara Republik Indonesia Tahun 1945', 'Bhinneka Tunggal Ika', 'Negara Kesatuan Republik Indonesia'],
+            'Bahasa Indonesia': ['CP Umum', 'Membaca dan Memirsa', 'Menulis', 'Berbicara dan Mempresentasikan', 'Menyimak'],
+            'Bahasa Sunda': ['CP Umum', 'Nyarita', 'Maca', 'Nulis', 'Ngaregepkeun'],
+            'Matematika': ['CP Umum', 'Bilangan', 'Aljabar', 'Pengukuran', 'Geometri', 'Analisis Data dan Peluang'],
+            'Bahasa Inggris': ['CP Umum', 'Menyimak – Berbicara', 'Membaca – Memirsa', 'Menulis – Mempresentasikan'],
+            'IPAS': ['CP Umum', 'Pemahaman IPAS', 'Keterampilan Proses'],
+            'IPA': ['CP Umum', 'Makhluk Hidup dan Lingkungannya', 'Zat dan Perubahannya', 'Energi dan Perubahannya', 'Bumi dan Antariksa'],
+            'IPS': ['CP Umum', 'Pemahaman Konsep', 'Keterampilan Proses'],
+            'PJOK': ['CP Umum', 'Keterampilan Gerak', 'Pengetahuan Gerak', 'Pemanfaatan Gerak', 'Pengembangan Karakter dan Internalisasi Nilai-Nilai Gerak'],
+            'Informatika': ['CP Umum', 'Berpikir Komputasional (BK)', 'Teknologi Informasi dan Komunikasi (TIK)', 'Sistem Komputer (SK)', 'Jaringan Komputer dan Internet (JKI)', 'Analisis Data (AD)', 'Algoritma dan Pemrograman (AP)', 'Dampak Sosial Informatika (DSI)', 'Praktik Lintas Bidang (PLB)'],
+            'Seni Musik': ['CP Umum', 'Mengalami', 'Menciptakan', 'Merefleksikan', 'Berpikir dan Bekerja Artistik', 'Berdampak'],
+            'Seni Rupa': ['CP Umum', 'Mengalami', 'Menciptakan', 'Merefleksikan', 'Berpikir dan Bekerja Artistik', 'Berdampak'],
+            'Seni Tari': ['CP Umum', 'Mengalami', 'Menciptakan', 'Merefleksikan', 'Berpikir dan Bekerja Artistik', 'Berdampak'],
+            'Seni Teater': ['CP Umum', 'Mengalami', 'Menciptakan', 'Merefleksikan', 'Berpikir dan Bekerja Artistik', 'Berdampak']
+        };
+
+        matapelajaranSelect.addEventListener('change', () => {
+            const selectedMapel = matapelajaranSelect.value;
+            elemenSelect.innerHTML = '<option value="" disabled selected>-- Pilih Elemen --</option>';
+            if (selectedMapel && elemenMap[selectedMapel]) {
+                elemenMap[selectedMapel].forEach(elemen => {
+                    const option = document.createElement('option');
+                    option.value = elemen;
+                    option.textContent = elemen;
+                    elemenSelect.appendChild(option);
+                });
+                elemenSelect.disabled = false;
+            } else {
+                elemenSelect.disabled = true;
+                elemenSelect.innerHTML = '<option value="" disabled selected>-- Tidak ada elemen --</option>';
+            }
+        });
+        
+        faseSelect.addEventListener('change', () => {
+            const selectedFase = faseSelect.value;
+            const mapelOptions = matapelajaranSelect.options;
+
+            for (const option of mapelOptions) {
+                const mapelValue = option.value;
+                if (selectedFase === 'A' && (mapelValue === 'IPAS' || mapelValue === 'Bahasa Inggris')) {
+                    option.hidden = true;
+                } 
+                else if (['A', 'B', 'C'].includes(selectedFase) && (mapelValue === 'IPA' || mapelValue === 'IPS')) {
+                    option.hidden = true;
+                }
+                else if (['D', 'E', 'F'].includes(selectedFase) && mapelValue === 'IPAS') {
+                    option.hidden = true;
+                }
+                else {
+                    option.hidden = false;
+                }
+            }
+
+            if (matapelajaranSelect.options[matapelajaranSelect.selectedIndex]?.hidden) {
+                matapelajaranSelect.value = '';
+                matapelajaranSelect.dispatchEvent(new Event('change'));
+            }
+        });
+
+
+        // --- Event Listeners ---
+        generateBtn.addEventListener('click', handleGenerateAndCreateTp);
+        regenerateTpBtn.addEventListener('click', handleGenerateAndCreateTp);
+        exportBtn.addEventListener('click', handleExport);
+
+        // --- Fungsi Utama ---
+        async function handleGenerateAndCreateTp() {
+            currentCpText = cpInput.value.trim();
+            if (!matapelajaranSelect.value || !faseSelect.value || !elemenSelect.value) {
+                alert('Mohon lengkapi pilihan Mata Pelajaran, Fase, dan Elemen.');
+                return;
+            }
+            if (!currentCpText) {
+                alert('Mohon masukkan deskripsi Capaian Pembelajaran (CP).');
+                return;
+            }
+            if (GAS_WEB_APP_URL.includes('GANTI_DENGAN_URL')) {
+                alert('Kesalahan Konfigurasi: URL Google Apps Script belum diatur di dalam kode HTML.');
+                return;
+            }
+
+            // Analisis CP (tanpa UI)
+            const topics = currentCpText.split(';').map(s => s.trim()).filter(s => s.length > 0);
+            currentTopics = (topics.length === 0) ? [currentCpText] : topics;
+
+            if (!currentTopics || currentTopics.length === 0) {
+                alert("Tidak ada fokus materi yang teridentifikasi dari CP yang dimasukkan.");
+                return;
+            }
+            
+            // UI Update
+            resultCard.classList.remove('hidden');
+            tpLoader.classList.remove('hidden');
+            resultActions.classList.add('hidden');
+            generatedTpData = []; 
+            tpResultsContainer.innerHTML = ''; // Kosongkan kontainer
+            
+            try {
+                for (let i = 0; i < currentTopics.length; i++) {
+                    const topic = currentTopics[i];
+                    tpLoaderText.textContent = `Membuat tabel TP untuk topik "${topic}"... (${i + 1}/${currentTopics.length})`;
+
+                    // Data yang akan dikirim ke Google Apps Script
+                    const requestData = {
+                        fase: faseSelect.value,
+                        mapel: matapelajaranSelect.value,
+                        elemen: elemenSelect.value,
+                        cp: currentCpText,
+                        topic: topic
+                    };
+
+                    const data = await callGasApi(requestData);
+                    
+                    if (data && data.tujuanPembelajaranSOLO) {
+                        const tableData = { topic: topic, tps: data.tujuanPembelajaranSOLO };
+                        generatedTpData.push(tableData);
+                        appendTpTable(tableData);
+                    } else {
+                         throw new Error(data.error || "Gagal mendapatkan data dari backend.");
+                    }
+                }
+            } catch (error) {
+                console.error(error);
+                tpResultsContainer.innerHTML = `<div class="text-center text-red-600 bg-red-50 p-4 rounded-lg border border-red-200"><p class="font-semibold">Oops! Terjadi Kesalahan</p><p>${error.message}</p></div>`;
+            } finally {
+                tpLoader.classList.add('hidden');
+                resultActions.classList.remove('hidden');
+            }
+        }
+
+        // --- Alur 3: Fungsi Ekspor ---
+        function handleExport() {
+            if (generatedTpData.length === 0) {
+                alert("Data tidak lengkap untuk diekspor. Pastikan TP telah dibuat.");
+                return;
+            }
+
+            const headers = [
+                "Mata Pelajaran", "Fase", "Elemen", "Capaian Pembelajaran", "Fokus Materi", 
+                "Level Taksonomi SOLO", "Tujuan Pembelajaran (TP)", "Kata Kerja Operasional (KKO)"
+            ];
+            
+            let rows = [];
+            generatedTpData.forEach((tableData, tableIndex) => {
+                tableData.tps.forEach((tp, rowIndex) => {
+                    const mapel = (tableIndex === 0 && rowIndex === 0) ? matapelajaranSelect.options[matapelajaranSelect.selectedIndex].text : '';
+                    const fase = (tableIndex === 0 && rowIndex === 0) ? faseSelect.value : '';
+                    const elemen = (tableIndex === 0 && rowIndex === 0) ? elemenSelect.value : '';
+                    const cp = (tableIndex === 0 && rowIndex === 0) ? currentCpText : '';
+                    const topic = rowIndex === 0 ? tableData.topic : '';
+
+                    rows.push([
+                        mapel, fase, elemen, cp, topic,
+                        tp.level_solo, tp.tujuan_pembelajaran, tp.kko
+                    ]);
+                });
+            });
+
+            let csvContent = "data:text/csv;charset=utf-8," 
+                + [headers, ...rows].map(e => e.map(escapeCsvField).join(",")).join("\n");
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            const fileName = `TP_SOLO_${matapelajaranSelect.value.replace(/ /g,"_")}_Fase${faseSelect.value}.csv`;
+            link.setAttribute("download", fileName);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function escapeCsvField(field) {
+            if (field === null || field === undefined) return '';
+            let fieldStr = String(field);
+            if (fieldStr.search(/("|,|\n)/g) >= 0) {
+                fieldStr = `"${fieldStr.replace(/"/g, '""')}"`;
+            }
+            return fieldStr;
+        }
+        
+        // --- Fungsi Pembantu & Tampilan ---
+        async function callGasApi(requestData) {
+            try {
+                const response = await fetch(GAS_WEB_APP_URL, {
+                    method: 'POST',
+                    mode: 'cors', // Diperlukan untuk memanggil Apps Script dari domain lain
+                    redirect: 'follow',
+                    headers: {
+                        'Content-Type': 'text/plain;charset=utf-8', // Apps Script lebih mudah menangani text/plain untuk POST
+                    },
+                    body: JSON.stringify(requestData) // Kirim data sebagai string JSON
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Panggilan API gagal dengan status: ${response.status}`);
+                }
+                
+                // Apps Script akan mengembalikan string JSON, jadi kita perlu mem-parsingnya
+                const resultText = await response.text();
+                return JSON.parse(resultText);
+
+            } catch (error) {
+                console.error("Error saat memanggil Google Apps Script:", error);
+                throw error; // Lemparkan error agar bisa ditangani oleh fungsi pemanggil
+            }
+        }
+        
+        function appendTpTable(tableData) {
+            const { topic, tps } = tableData;
+            
+            const tableHtml = `
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Fokus Materi: ${topic}</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white border border-gray-200 text-sm">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="text-left font-semibold p-3 w-1/4">Level Taksonomi SOLO</th>
+                                    <th class="text-left font-semibold p-3 w-1/2">Tujuan Pembelajaran (TP)</th>
+                                    <th class="text-left font-semibold p-3 w-1/4">Kata Kerja Operasional (KKO)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${tps.map(tp => `
+                                    <tr class="border-t hover:bg-gray-50">
+                                        <td class="p-3 align-top font-semibold">${tp.level_solo || 'N/A'}</td>
+                                        <td class="p-3 align-top">${tp.tujuan_pembelajaran || 'N/A'}</td>
+                                        <td class="p-3 align-top">${tp.kko || 'N/A'}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+            
+            tpResultsContainer.insertAdjacentHTML('beforeend', tableHtml);
+        }
+    </script>
+
+</body>
+</html>
